@@ -5,5 +5,7 @@
         public const string DbName = "MovieDb";
         public const string ConcurrencyStamp = "ConcurrencyStamp";
         public const string UpdateDate = "UpdateDate";
+        public const string AuthenticationDb = "AuthenticationDb";
+        
     }
 }
