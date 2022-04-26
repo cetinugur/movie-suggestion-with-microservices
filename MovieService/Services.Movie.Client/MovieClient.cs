@@ -16,19 +16,19 @@ namespace Services.Movie.Client
         {
         }
 
-        public ServiceResult Add(MovieModel model)
+        public ServiceResult Add(Model.Movie model)
         {
             var request = CreateRequest<ServiceResult>(MovieApiConstants.MovieAdd, model, Method.Post);
             return HandleResponse(request);
         }
 
-        public ServiceResult<MovieModel> Get(Guid movieId)
+        public ServiceResult<Model.Movie> Get(Guid movieId)
         {
-            var request = CreateRequest<ServiceResult<MovieModel>>(MovieApiConstants.MovieGet, null, Method.Get,
+            var request = CreateRequest<ServiceResult<Model.Movie>>(MovieApiConstants.MovieGet, null, Method.Get,
                 new UrlSegmentParam() { Name = "id", Value = movieId });
             return HandleResponse(request);
         }
-        public ServiceResult Update(MovieModel model)
+        public ServiceResult Update(Model.Movie model)
         {
             var request = CreateRequest<ServiceResult>(MovieApiConstants.MovieUpdate, model, Method.Post);
             return HandleResponse(request);
@@ -41,9 +41,9 @@ namespace Services.Movie.Client
             return HandleResponse(request);
         }
 
-        public ServiceResult<List<MovieModel>> List(int offset = 0, int limit = 1000)
+        public ServiceResult<List<Model.Movie>> List(int offset = 0, int limit = 1000)
         {
-            var request = CreateRequest<ServiceResult<List<MovieModel>>>(MovieApiConstants.MovieList, null, Method.Get,
+            var request = CreateRequest<ServiceResult<List<Model.Movie>>>(MovieApiConstants.MovieList, null, Method.Get,
                 new UrlSegmentParam() { Name = "offset", Value = offset },
                 new UrlSegmentParam() { Name = "limit", Value = limit });
             return HandleResponse(request);

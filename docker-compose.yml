@@ -1,0 +1,143 @@
+version: '3.9'
+
+services:
+
+#######################   SERVICES   ######################
+    authentication-service:
+        image: ${DOCKER_REGISTRY-}authentication-service
+        container_name: authentication-service
+        hostname: authentication-service
+        restart: always
+        depends_on:
+            - authentication-service-db
+        #networks:
+        #    - directory-app-network
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+        ports:
+            - "3000:80"
+            - "3001:443" 
+        build:
+            context: .
+            dockerfile: AuthenticationService/Services.Authentication.Api/Dockerfile
+
+    movie-service:
+        image: ${DOCKER_REGISTRY-}movie-service
+        container_name: movie-service
+        hostname: movie-service
+        restart: always
+        depends_on:
+            - movie-service-db
+        #networks:
+        #    - directory-app-network
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+        ports:
+            - "3010:80"
+            - "3011:443" 
+        build:
+            context: .
+            dockerfile: MovieService/Services.Movie.Api/Dockerfile
+
+    email-service:
+        image: ${DOCKER_REGISTRY-}email-service
+        container_name: email-service
+        hostname: email-service
+        restart: always
+        depends_on:
+            - email-service-db
+        #networks:
+        #    - directory-app-network
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+        ports:
+            - "3020:80"
+            - "3021:443" 
+        build:
+            context: .
+            dockerfile: EmailService/Services.Email.Api/Dockerfile
+
+#######################   DATABASES   ######################
+
+    authentication-service-db:
+        image: "postgres"
+        container_name: authentication-service-db
+        hostname: authentication-service-db
+        restart: always
+        #networks:
+        #    - directory-app-network
+        ports:
+          - "3510:5432"
+        environment:
+          - POSTGRES_USER=directoryAppUser
+          - POSTGRES_PASSWORD=WQS_%Lhz7V5.]%p6
+          - POSTGRES_DB=authenticationservicedb
+        volumes:
+          - authentication-service-db-data:/var/lib/postgresql/data/
+
+    movie-service-db:
+        image: "postgres"
+        container_name: movie-service-db
+        hostname: movie-service-db
+        restart: always
+        #networks:
+        #    - directory-app-network
+        ports:
+          - "3520:5432"
+        environment:
+          - POSTGRES_USER=directoryAppUser
+          - POSTGRES_PASSWORD=g&fkwm8AsBV2ZrS.
+          - POSTGRES_DB=movieservicedb
+        volumes:
+          - movie-service-db-data:/var/lib/postgresql/data/
+    
+    email-service-db:
+        image: "postgres"
+        container_name: email-service-db
+        hostname: email-service-db
+        restart: always
+        #networks:
+        #    - directory-app-network
+        ports:
+          - "3530:5432"
+        environment:
+          - POSTGRES_USER=directoryAppUser
+          - POSTGRES_PASSWORD=rt4nHfBK&pbAzb&
+          - POSTGRES_DB=emailservicedb
+        volumes:
+          - email-service-db-data:/var/lib/postgresql/data/
+
+#######################   MESSAGE BROKER   ######################
+    rabbitmq:
+        image: rabbitmq:3-management-alpine
+        container_name: rabbitmq
+        hostname: rabbitmq
+        restart: always
+        environment:
+            - RABBITMQ_DEFAULT_USER=directoryAppUser
+            - RABBITMQ_DEFAULT_PASS=k638nsHSRGvHbP3b
+        #networks:
+        #    - directory-app-network
+        ports:
+            - "5672:5672" # AMQP protocol port
+            - "15672:15672" # HTTP management UI
+        #volumes:
+        #    - rabbitmq-etc/:/etc/rabbitmq/
+        #    - rabbitmq-data/:/var/lib/rabbitmq/
+        #    - rabbitmq-logs/:/var/log/rabbitmq/         
+
+
+volumes:
+  authentication-service-db-data:
+  movie-service-db-data:
+  email-service-db-data:
+  #rabbitmq-etc:
+  #rabbitmq-data:
+  #rabbitmq-logs:
+
+
+#networks:
+#    directory-app-network:
+#        external: true
+#        driver: bridge
+ 

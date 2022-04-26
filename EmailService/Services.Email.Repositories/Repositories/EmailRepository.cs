@@ -5,7 +5,7 @@ using Services.Shared.Data.Repository;
 
 namespace Services.Email.Repositories.Repositories
 {
-    public class EmailRepository : Repository<MovieSuggestionEmail>, IEmailRepository
+    public class EmailRepository : Repository<MovieSuggestion>, IEmailRepository
     {
         public EmailRepository(EmailDbContext context) : base(context)
         {

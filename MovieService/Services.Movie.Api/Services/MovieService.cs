@@ -16,7 +16,7 @@ namespace Services.Movie.Api.Services
             _MovieRepository = MovieRepository;
         }
 
-        public ApiResult Get(Guid id)
+        public ApiResult Get(int id)
         {
             var Movie = _MovieRepository.FirstOrDefault(x => x.Id == id);
             if (Movie == null)
@@ -26,7 +26,7 @@ namespace Services.Movie.Api.Services
         }
 
 
-        public ApiResult Add(MovieModel Movie)
+        public ApiResult Add(Model.Movie Movie)
         {
             var result = _MovieRepository.Add(Movie).SaveChanges();
             if (!result)
@@ -35,7 +35,7 @@ namespace Services.Movie.Api.Services
             return new ApiResult(HttpStatusCode.OK, MessageDictionary.MovieAdded);
         }
 
-        public ApiResult Update(MovieModel Movie)
+        public ApiResult Update(Model.Movie Movie)
         {
             var isExist = _MovieRepository.Any(x => x.Id == Movie.Id);
             if (!isExist)

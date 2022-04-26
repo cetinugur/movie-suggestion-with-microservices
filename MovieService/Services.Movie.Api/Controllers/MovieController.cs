@@ -17,7 +17,7 @@ namespace Services.Movie.Api.Controllers
 
         [Route("[action]/{id}")]
         [HttpGet]
-        public IActionResult Get(Guid id)
+        public IActionResult Get(int id)
         {
             var result = _movieService.Get(id);
             return StatusCode((int)result.StatusCode, result);

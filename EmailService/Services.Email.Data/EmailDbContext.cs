@@ -11,6 +11,6 @@ namespace Services.Email.Data
 
         }
 
-        public DbSet<MovieSuggestionEmail> Emails { get; set; }
+        public DbSet<MovieSuggestion> Emails { get; set; }
     }
 }

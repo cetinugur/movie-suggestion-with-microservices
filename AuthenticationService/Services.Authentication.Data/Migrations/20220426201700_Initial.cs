@@ -1,5 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
 
 namespace Services.Authentication.Data.Migrations
 {
@@ -32,8 +35,6 @@ namespace Services.Authentication.Data.Migrations
                     LastName = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ValidateToken = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
-                    PasswordResetToken = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: true),
                     UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
@@ -71,31 +72,6 @@ namespace Services.Authentication.Data.Migrations
                         name: "FK_AspNetRoleClaims_AspNetRoles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "AspNetRoles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AppUserAuthentications",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AppUserId = table.Column<int>(type: "integer", nullable: false),
-                    AccessToken = table.Column<string>(type: "text", nullable: true),
-                    AccessTokenExpires = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    RefreshToken = table.Column<string>(type: "text", nullable: true),
-                    RefreshTokenExpires = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
-                    CreatedTime = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppUserAuthentications", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_AppUserAuthentications_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -186,11 +162,6 @@ namespace Services.Authentication.Data.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AppUserAuthentications_AppUserId",
-                table: "AppUserAuthentications",
-                column: "AppUserId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
                 column: "RoleId");
@@ -230,9 +201,6 @@ namespace Services.Authentication.Data.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AppUserAuthentications");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 

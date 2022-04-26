@@ -11,6 +11,6 @@ namespace Services.Movie.Data
 
         }
 
-        public DbSet<MovieModel> Movies { get; set; }
+        public DbSet<Model.Movie> Movies { get; set; }
     }
 }

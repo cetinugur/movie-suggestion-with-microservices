@@ -5,10 +5,10 @@ namespace Services.Movie.Client.Interfaces;
 
 public interface IMovieClient
 {
-    ServiceResult<MovieModel> Get(Guid movieId);
-    ServiceResult Add(MovieModel movie);
-    ServiceResult Update(MovieModel movie);
+    ServiceResult<Model.Movie> Get(Guid movieId);
+    ServiceResult Add(Model.Movie movie);
+    ServiceResult Update(Model.Movie movie);
     ServiceResult Delete(Guid movieId);
-    ServiceResult<List<MovieModel>> List(int offset = 0, int limit = 1000);
+    ServiceResult<List<Model.Movie>> List(int offset = 0, int limit = 1000);
     ServiceResult Count();
 }

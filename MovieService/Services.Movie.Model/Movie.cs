@@ -2,11 +2,11 @@
 
 namespace Services.Movie.Model
 {
-    public class MovieModel : EntityBase
+    public class Movie : EntityBase
     {
         public string Name { get; set; }
-        public List<MovieNoteModel> Notes { get; set; }
-        public List<MovieRankModel> Ranks { get; set; }
+        public virtual IEnumerable<MovieNote> Notes { get; set; }
+        public virtual IEnumerable<MovieRank> Ranks { get; set; }
 
         [NotMapped]
         public decimal Rank

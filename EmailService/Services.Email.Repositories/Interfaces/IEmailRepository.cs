@@ -3,7 +3,7 @@ using Services.Shared.Data.Repository;
 
 namespace Services.Email.Repositories.Interfaces
 {
-    public interface IEmailRepository : IRepository<MovieSuggestionEmail>
+    public interface IEmailRepository : IRepository<MovieSuggestion>
     {
     }
 }

@@ -29,7 +29,7 @@ namespace Services.Email.Services
         {
             try
             {
-                var movieSuggestionEmail = new MovieSuggestionEmail()
+                var movieSuggestionEmail = new MovieSuggestion()
                 {
                     RequestUserId = _httpContextHelper.CurrentUser.Id,
                     RequestDate = DateTime.UtcNow,
