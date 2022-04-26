@@ -13,7 +13,4 @@
 	  <ProjectReference Include="..\Services.Movie.Model\Services.Movie.Model.csproj" />
 	  <ProjectReference Include="..\Services.Movie.Model\Services.Movie.Model.csproj" />
 	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Migrations\" />
-	</ItemGroup>
 </Project>
