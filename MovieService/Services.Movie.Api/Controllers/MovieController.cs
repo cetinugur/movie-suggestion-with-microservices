@@ -9,17 +9,17 @@ namespace Services.Movie.Api.Controllers
     [Authorize]
     public class MovieController : ControllerBase
     {
-        private readonly MovieService _MovieService;
-        public MovieController(MovieService MovieService)
+        private readonly MovieService _movieService;
+        public MovieController(MovieService movieService)
         {
-            _MovieService = MovieService;
+            _movieService = movieService;
         }
 
         [Route("[action]/{id}")]
         [HttpGet]
         public IActionResult Get(Guid id)
         {
-            var result = _MovieService.Get(id);
+            var result = _movieService.Get(id);
             return StatusCode((int)result.StatusCode, result);
         }
 
@@ -27,7 +27,7 @@ namespace Services.Movie.Api.Controllers
         [HttpGet]
         public IActionResult List(int offset, int limit)
         {
-            var result = _MovieService.List(offset, limit);
+            var result = _movieService.List(offset, limit);
             return StatusCode((int)result.StatusCode, result);
         }
 
@@ -35,7 +35,7 @@ namespace Services.Movie.Api.Controllers
         [HttpGet]
         public IActionResult Count()
         {
-            var result = _MovieService.Count();
+            var result = _movieService.Count();
             return StatusCode((int)result.StatusCode, result);
         }
     }
