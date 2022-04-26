@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit" Version="7.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MovieService\Services.Movie.Client\Services.Movie.Client.csproj" />
+    <ProjectReference Include="..\..\Shared\Services.Shared.EventBus\Services.Shared.EventBus.csproj" />
+    <ProjectReference Include="..\Services.Email.Model\Services.Email.Model.csproj" />
+    <ProjectReference Include="..\Services.Email.Repositories\Services.Email.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
