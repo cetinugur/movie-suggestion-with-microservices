@@ -1,8 +1,6 @@
 ﻿using System.Net;
-using Microsoft.EntityFrameworkCore;
 using Services.Shared.Dictionaries;
 using Services.Shared.Models;
-using Services.Movie.Model;
 using Services.Movie.Repositories.Interfaces;
 
 namespace Services.Movie.Api.Services
@@ -33,27 +31,6 @@ namespace Services.Movie.Api.Services
                 return new ApiResult(HttpStatusCode.BadRequest, MessageDictionary.MovieNotAdded);
 
             return new ApiResult(HttpStatusCode.OK, MessageDictionary.MovieAdded);
-        }
-
-        public ApiResult Update(Model.Movie Movie)
-        {
-            var isExist = _MovieRepository.Any(x => x.Id == Movie.Id);
-            if (!isExist)
-                return new ApiResult(HttpStatusCode.NotFound, MessageDictionary.MovieNotFound);
-
-            bool result;
-            try
-            {
-                result = _MovieRepository.Update(Movie).SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException e)
-            {
-                return new ApiResult(HttpStatusCode.BadRequest, e.Message);
-            }
-            if (!result)
-                return new ApiResult(HttpStatusCode.BadRequest, MessageDictionary.MovieNotUpdated);
-
-            return new ApiResult(HttpStatusCode.OK, MessageDictionary.MovieUpdated);
         }
 
         public ApiResult List(int offset, int limit)
