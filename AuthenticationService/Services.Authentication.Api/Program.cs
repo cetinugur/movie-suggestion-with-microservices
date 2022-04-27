@@ -32,7 +32,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     using var scope = app.Services.CreateScope();
     var dataContext = scope.ServiceProvider.GetRequiredService<AuthenticationDbContext>();
-    dataContext.Database.Migrate();
+    //dataContext.Database.Migrate();
 }
 
 app.UseAuthentication();

@@ -6,7 +6,8 @@ namespace Services.Email.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    // TODO aç
+    //[Authorize]
     public class EmailController : ControllerBase
     {
         private readonly EmailService _emailService;

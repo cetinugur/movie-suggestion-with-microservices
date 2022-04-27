@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Services.Shared.Authentication.Client\Services.Shared.Authentication.Client.csproj" />
     <ProjectReference Include="..\..\Shared\Services.Shared.Models\Services.Shared.Models.csproj" />
     <ProjectReference Include="..\Services.Movie.Data\Services.Movie.Data.csproj" />
     <ProjectReference Include="..\Services.Movie.Model\Services.Movie.Model.csproj" />

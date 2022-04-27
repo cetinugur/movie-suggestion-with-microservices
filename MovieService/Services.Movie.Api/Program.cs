@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Services.Movie.Api.Services;
 using Services.Movie.Data;
 using Services.Movie.Repositories;
+using Services.Shared.Authentication.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMovieDb(builder.Configuration);
 builder.Services.AddMovieDataRepositories();
 builder.Services.AddScoped<MovieService>();
+builder.Services.AddAuthenticationTokenClientHelper(builder.Configuration);
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -20,7 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
     using var scope = app.Services.CreateScope();
     var dataContext = scope.ServiceProvider.GetRequiredService<MovieDbContext>();
-    dataContext.Database.Migrate();
+    //dataContext.Database.Migrate();
 }
 
 app.UseAuthentication();

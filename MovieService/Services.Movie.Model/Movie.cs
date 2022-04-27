@@ -9,9 +9,13 @@ namespace Services.Movie.Model
         public virtual IEnumerable<MovieRank> Ranks { get; set; }
 
         [NotMapped]
-        public decimal Rank
+        public decimal? Rank
         {
-            get { return Ranks.Select(x => (decimal)x.Rank).Average(); }
+            get {
+
+                if (Ranks is null) return null;
+                return Ranks.Select(x => (decimal?)x.Rank).Average(); 
+            }
         }
     }
 }

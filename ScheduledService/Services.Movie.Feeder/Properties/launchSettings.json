@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "Seyir.Integrations.App": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

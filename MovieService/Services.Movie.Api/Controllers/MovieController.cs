@@ -6,7 +6,8 @@ namespace Services.Movie.Api.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+    // TODO aç
+    //[Authorize]
     public class MovieController : ControllerBase
     {
         private readonly MovieService _movieService;
